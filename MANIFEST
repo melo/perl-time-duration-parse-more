@@ -8,8 +8,10 @@ META.yml
 Makefile.PL
 README
 dist.ini
+eg/benchmark.pl
 lib/Time/Duration/Parse/More.pm
 t/00-compile.t
+t/10-expressions.t
 xt/author/test-eol.t
 xt/release/cpan-changes.t
 xt/release/dist-manifest.t
