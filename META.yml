@@ -195,6 +195,10 @@ x_Dist_Zilla:
       name: '@Author::MELO/@TestingMania/Test::Compile'
       version: 1.112820
     -
+      class: Dist::Zilla::Plugin::Test::Kwalitee
+      name: '@Author::MELO/@TestingMania/Test::Kwalitee'
+      version: 2.03
+    -
       class: Dist::Zilla::Plugin::NoTabsTests
       name: '@Author::MELO/@TestingMania/NoTabsTests'
       version: 0.01
