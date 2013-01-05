@@ -1,9 +1,9 @@
 
 
 This archive contains the distribution Time-Duration-Parse-More,
-version 0.001:
+version 0.002:
 
-  a very cool module
+  parse natural language time duration expressions
 
 This software is Copyright (c) 2013 by Pedro Melo.
 

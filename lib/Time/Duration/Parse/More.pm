@@ -1,7 +1,7 @@
 package Time::Duration::Parse::More;
 
-# ABSTRACT: a very cool module
-our $VERSION = '0.001'; # VERSION
+# ABSTRACT: parse natural language time duration expressions
+our $VERSION = '0.002'; # VERSION
 our $AUTHORITY = 'cpan:MELO'; # AUTHORITY
 
 use strict;
@@ -81,11 +81,11 @@ cpants kwalitee diff irc mailto metadata placeholders metacpan
 
 =head1 NAME
 
-Time::Duration::Parse::More - a very cool module
+Time::Duration::Parse::More - parse natural language time duration expressions
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
