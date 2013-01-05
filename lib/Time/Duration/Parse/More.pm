@@ -23,9 +23,21 @@ my %units = (
   map(($_, 60 * 60 * 24 * 365), qw(y year years))
 );
 
-sub parse_duration {
-  my ($e) = @_;
+my %cache;
 
+sub parse_duration {
+  my ($expression) = @_;
+  return unless defined $expression;
+
+  return $cache{$expression} if exists $cache{$expression};
+  return $cache{$expression} = parse_duration_nc($expression);
+}
+
+sub parse_duration_nc {
+  my ($expression) = @_;
+  return unless defined $expression;
+
+  my $e = $expression;
   $e =~ s/\band\b/ /gi;
   $e =~ s/[\s\t]+/ /g;
   $e =~ s/^\s+|\s+$//g;
