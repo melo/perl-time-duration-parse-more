@@ -1,6 +1,6 @@
 package Time::Duration::Parse::More;
 
-# ABSTRACT: a very cool module
+# ABSTRACT: parse natural language time duration expressions
 # VERSION
 # AUTHORITY
 
