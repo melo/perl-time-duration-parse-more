@@ -172,9 +172,16 @@ years (365 * days factor): y, year, and years;
 
     $seconds = parse_duration($expression);
 
-Given an C<$expression> in natural lanaguage returns the number of seconds it represents.
+Given an C<$expression> in natural lanaguage returns the number of
+seconds it represents. This result is cached so future calls with the
+same expression will be faster.
 
 If the expression cannot be parsed, C<parse_duration> will croak.
+
+
+=head2 parse_duration_nc
+
+Same as L</parse_duration>, but the result will not be cached.
 
 
 =head1 HISTORY
