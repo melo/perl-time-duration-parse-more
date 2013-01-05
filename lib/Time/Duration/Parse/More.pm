@@ -6,6 +6,54 @@ package Time::Duration::Parse::More;
 
 use strict;
 use warnings;
+use Exporter;
+use Carp;
+
+our @ISA    = qw( Exporter );
+our @EXPORT = qw( parse_duration );
+
+# From Time::Duration::Parse
+my %units = (
+  map(($_, 1),                  qw(s second seconds sec secs)),
+  map(($_, 60),                 qw(m minute minutes min mins)),
+  map(($_, 60 * 60),            qw(h hr hour hours)),
+  map(($_, 60 * 60 * 24),       qw(d day days)),
+  map(($_, 60 * 60 * 24 * 7),   qw(w week weeks)),
+  map(($_, 60 * 60 * 24 * 30),  qw(M month months)),
+  map(($_, 60 * 60 * 24 * 365), qw(y year years))
+);
+
+sub parse_duration {
+  my ($e) = @_;
+
+  $e =~ s/\band\b/ /gi;
+  $e =~ s/[\s\t]+/ /g;
+  $e =~ s/^\s+|\s+$//g;
+
+  $e =~ s/^\s*([-+]?\d+(?:[.,]\d+)?)\s*$/$1s/;
+  $e =~ s/^\s*([-+]?[.,]\d+)\s*$/$1s/;
+  $e =~ s/\b(\d+):(\d+):(\d+)\b/$1h $2m $3s/g;
+  $e =~ s/\b(\d+):(\d+)\b/$1h $2m/g;
+
+  my $duration = 0;
+  my $signal   = 1;
+  while ($e) {
+    if    ($e =~ s/^plus\b(\s*,?)*//)  { $signal = 1 }
+    elsif ($e =~ s/^minus\b(\s*,?)*//) { $signal = -1 }
+    elsif ($e =~ s/^(([-+]?\d+(?:[,.]\d*)?)\s*(\w+))(\s*,?)*// or $e =~ s/^(([-+]?[,.]\d+)\s*(\w+))(\s*,?)*//) {
+      my ($m, $n, $u) = ($1, $2, $3);
+      $n =~ s/,/./;
+      $u = lc($u) unless length($u) == 1;
+      croak "Unit '$u' not recognized in '$m'" unless exists $units{$u};
+      $duration += $signal * $n * $units{$u};
+    }
+    else {
+      croak("Could not parse '$e'");
+    }
+  }
+
+  return sprintf('%.0f', $duration);
+}
 
 
 1;
