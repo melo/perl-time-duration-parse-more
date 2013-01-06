@@ -203,10 +203,6 @@ x_Dist_Zilla:
       name: '@Author::MELO/@TestingMania/Test::MinimumVersion'
       version: 2.000002
     -
-      class: Dist::Zilla::Plugin::Test::Pod::LinkCheck
-      name: '@Author::MELO/@TestingMania/Test::Pod::LinkCheck'
-      version: 1.001
-    -
       class: Dist::Zilla::Plugin::Test::EOL
       name: '@Author::MELO/@TestingMania/Test::EOL'
       version: 0.07
