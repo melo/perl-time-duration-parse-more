@@ -223,6 +223,11 @@
             "version" : "4.300028"
          },
          {
+            "class" : "Dist::Zilla::Plugin::Test::Pod::No404s",
+            "name" : "@Author::MELO/Test::Pod::No404s",
+            "version" : "1.001"
+         },
+         {
             "class" : "Dist::Zilla::Plugin::Test::UnusedVars",
             "name" : "@Author::MELO/@TestingMania/Test::UnusedVars",
             "version" : "2.000003"
@@ -231,11 +236,6 @@
             "class" : "Dist::Zilla::Plugin::Test::Synopsis",
             "name" : "@Author::MELO/@TestingMania/Test::Synopsis",
             "version" : "2.000002"
-         },
-         {
-            "class" : "Dist::Zilla::Plugin::Test::Portability",
-            "name" : "@Author::MELO/@TestingMania/Test::Portability",
-            "version" : "2.000003"
          },
          {
             "class" : "Dist::Zilla::Plugin::Test::Version",
@@ -288,6 +288,11 @@
             "version" : "2.000002"
          },
          {
+            "class" : "Dist::Zilla::Plugin::Test::Pod::LinkCheck",
+            "name" : "@Author::MELO/@TestingMania/Test::Pod::LinkCheck",
+            "version" : "1.001"
+         },
+         {
             "class" : "Dist::Zilla::Plugin::Test::EOL",
             "name" : "@Author::MELO/@TestingMania/Test::EOL",
             "version" : "0.07"
@@ -328,8 +333,8 @@
             "version" : "4.300028"
          },
          {
-            "class" : "Dist::Zilla::Plugin::FakeRelease",
-            "name" : "@Author::MELO/FakeRelease",
+            "class" : "Dist::Zilla::Plugin::UploadToCPAN",
+            "name" : "@Author::MELO/UploadToCPAN",
             "version" : "4.300028"
          },
          {
