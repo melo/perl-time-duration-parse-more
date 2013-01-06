@@ -1,7 +1,7 @@
 package Time::Duration::Parse::More;
 
 # ABSTRACT: parse natural language time duration expressions
-our $VERSION = '0.002'; # VERSION
+our $VERSION = '0.003'; # VERSION
 our $AUTHORITY = 'cpan:MELO'; # AUTHORITY
 
 use strict;
@@ -85,7 +85,7 @@ Time::Duration::Parse::More - parse natural language time duration expressions
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 

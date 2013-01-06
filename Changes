@@ -1,5 +1,8 @@
 Revision history for Time-Duration-Parse-More
  
+0.003     2013-01-06T19:06:32Z
+        * Packaging changes to make Travis-CI happy
+
 0.002     2013-01-05T21:16:36Z
         * Doh! forgot the module abstract
 
