@@ -1,5 +1,5 @@
 ---
-abstract: 'a very cool module'
+abstract: 'parse natural language time duration expressions'
 author:
   - 'Pedro Melo <melo@cpan.org>'
 build_requires:
@@ -30,14 +30,14 @@ no_index:
 provides:
   Time::Duration::Parse::More:
     file: lib/Time/Duration/Parse/More.pm
-    version: 0.001
+    version: 0.002
 requires:
   perl: 5.006
 resources:
   bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=Time-Duration-Parse-More
   homepage: https://github.com/melo/perl-time-duration-parse-more
   repository: https://github.com/melo/perl-time-duration-parse-more.git
-version: 0.001
+version: 0.002
 x_Dist_Zilla:
   perl:
     version: 5.014002

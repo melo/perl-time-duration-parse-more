@@ -11,7 +11,7 @@
 
 #   MakeMaker Parameters:
 
-#     ABSTRACT => q[a very cool module]
+#     ABSTRACT => q[parse natural language time duration expressions]
 #     AUTHOR => [q[Pedro Melo <melo@cpan.org>]]
 #     BUILD_REQUIRES => { Test::More=>q[0.98], File::Temp=>q[0] }
 #     CONFIGURE_REQUIRES => { ExtUtils::MakeMaker=>q[6.30] }
@@ -21,7 +21,7 @@
 #     NAME => q[Time::Duration::Parse::More]
 #     PREREQ_PM => { Test::More=>q[0.98], File::Temp=>q[0] }
 #     TEST_REQUIRES => {  }
-#     VERSION => q[0.001]
+#     VERSION => q[0.002]
 #     test => { TESTS=>q[t/*.t] }
 
 # --- MakeMaker post_initialize section:
@@ -61,11 +61,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Time::Duration::Parse::More
 NAME_SYM = Time_Duration_Parse_More
-VERSION = 0.001
+VERSION = 0.002
 VERSION_MACRO = VERSION
-VERSION_SYM = 0_001
+VERSION_SYM = 0_002
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 0.001
+XS_VERSION = 0.002
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -259,7 +259,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Time-Duration-Parse-More
-DISTVNAME = Time-Duration-Parse-More-0.001
+DISTVNAME = Time-Duration-Parse-More-0.002
 
 
 # --- MakeMaker macro section:
@@ -480,7 +480,7 @@ realclean purge ::  clean realclean_subdirs
 metafile : create_distdir
 	$(NOECHO) $(ECHO) Generating META.yml
 	$(NOECHO) $(ECHO) '---' > META_new.yml
-	$(NOECHO) $(ECHO) 'abstract: '\''a very cool module'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) 'abstract: '\''parse natural language time duration expressions'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'author:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  - '\''Pedro Melo <melo@cpan.org>'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'build_requires:' >> META_new.yml
@@ -500,11 +500,11 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '    - t' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - inc' >> META_new.yml
 	$(NOECHO) $(ECHO) 'requires: {}' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: 0.001' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: 0.002' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
 	$(NOECHO) $(ECHO) '{' > META_new.json
-	$(NOECHO) $(ECHO) '   "abstract" : "a very cool module",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "abstract" : "parse natural language time duration expressions",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "author" : [' >> META_new.json
 	$(NOECHO) $(ECHO) '      "Pedro Melo <melo@cpan.org>"' >> META_new.json
 	$(NOECHO) $(ECHO) '   ],' >> META_new.json
@@ -541,7 +541,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : "0.001"' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : "0.002"' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
 
@@ -838,7 +838,7 @@ testdb_static :: testdb_dynamic
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
 	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="$(VERSION)">' > $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '    <ABSTRACT>a very cool module</ABSTRACT>' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '    <ABSTRACT>parse natural language time duration expressions</ABSTRACT>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>Pedro Melo &lt;melo@cpan.org&gt;</AUTHOR>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="darwin-2level-5.14" />' >> $(DISTNAME).ppd

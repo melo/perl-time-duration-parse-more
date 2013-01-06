@@ -9,7 +9,7 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "a very cool module",
+  "ABSTRACT" => "parse natural language time duration expressions",
   "AUTHOR" => "Pedro Melo <melo\@cpan.org>",
   "BUILD_REQUIRES" => {
     "File::Temp" => 0,
@@ -23,7 +23,7 @@ my %WriteMakefileArgs = (
   "LICENSE" => "artistic_2",
   "NAME" => "Time::Duration::Parse::More",
   "PREREQ_PM" => {},
-  "VERSION" => "0.001",
+  "VERSION" => "0.002",
   "test" => {
     "TESTS" => "t/*.t"
   }
