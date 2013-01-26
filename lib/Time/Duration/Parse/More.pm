@@ -42,6 +42,12 @@ sub _parse_duration {
   my ($expression) = @_;
   return unless defined $expression;
 
+  ## 'midnight' is uncacheable
+  if ($expression eq 'midnight') {
+    my ($sec, $min, $hour) = (localtime())[0 .. 2];
+    return (60 - $sec + (60 - $min - 1) * 60 + (24 - $hour - 1) * 60 * 60, 0);
+  }
+
   my $e = $expression;
   $e =~ s/\band\b/ /gi;
   $e =~ s/[\s\t]+/ /g;
@@ -87,6 +93,7 @@ sub _parse_duration {
     $seconds = parse_duration('1 minute minus 15 seconds'); ## 45
     $seconds = parse_duration('1 day minus 2.5 hours and 10 minutes plus 15 seconds'); ## 76815
     $seconds = parse_duration('minus 15 seconds'); ## -15
+    $seconds = parse_duration('midnight'); ## it depends :)
 
 
 =head1 DESCRIPTION
@@ -134,6 +141,9 @@ taking in account the sign defined by the previous rule.
 
 =back
 
+The hard-coded 'midnight' expression is also understood and returns the
+number of seconds up to 00::00:00 of the next day.
+
 
 =head2 Factors
 
@@ -178,8 +188,9 @@ years (365 * days factor): y, year, and years;
     $seconds = parse_duration($expression);
 
 Given an C<$expression> in natural lanaguage returns the number of
-seconds it represents. This result is cached so future calls with the
-same expression will be faster.
+seconds it represents. This result, with the exception of the
+'midnight' expression, is cached so future calls with the same
+expression will be faster.
 
 If the expression cannot be parsed, C<parse_duration> will croak.
 

@@ -1,22 +1,43 @@
 #!perl
 
+## Mock localtime()
+BEGIN {
+  my $my_time;
+
+  *CORE::GLOBAL::localtime = \&localtime;
+
+  sub localtime (;$) {
+    return @$my_time if $my_time;
+    return CORE::localtime($_[0]) if @_;
+    return CORE::localtime();
+  }
+  sub set_localtime { $my_time = @_ ? [@_] : undef }
+}
+
+
 use strict;
 use warnings;
 use Test::More;
 use Time::Duration::Parse::More;
 
-
 sub ok_duration {
-  my ($spec, $seconds) = @_;
+  my ($spec, $seconds, $msg) = @_;
+  $msg = $spec unless $msg;
   my $got = eval { parse_duration($spec) };
-  if   ($@) { fail("With '$spec' died with '$@'") }
-  else      { is($got, $seconds, "$spec = $seconds") }
+  if   ($@) { fail("With '$msg' died with '$@'") }
+  else      { is($got, $seconds, "$msg = $seconds (got $got)") }
 }
 
 sub fail_duration {
   my $spec = shift;
   eval { parse_duration($spec) };
   ok($@, $@);
+}
+
+sub ok_midnight {
+  my ($localtime, $value) = @_;
+  set_localtime(reverse(split(/:/, $localtime)));
+  ok_duration('midnight', $value, "$localtime to midnight");
 }
 
 
@@ -95,5 +116,18 @@ subtest 'Time::Duration::Parse tests' => sub {
   fail_duration '6 minutes and 3 sss';
   fail_duration '6 minutes, and 3 seconds a';
 };
+
+
+subtest 'midnight' => sub {
+  ok_midnight('23:55:01', 59 + 4 * 60);
+  ok_midnight('00:00:00', 24 * 60 * 60);
+  ok_midnight('00:00:01', 24 * 60 * 60 - 1);
+
+  set_localtime();
+  my $midnight_in = parse_duration('midnight');
+  sleep(1);
+  is(parse_duration('midnight'), $midnight_in - 1, "parse_duration('midnight') is not cached");
+};
+
 
 done_testing();
