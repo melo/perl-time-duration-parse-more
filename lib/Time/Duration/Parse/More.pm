@@ -30,10 +30,15 @@ sub parse_duration {
   return unless defined $expression;
 
   return $cache{$expression} if exists $cache{$expression};
-  return $cache{$expression} = parse_duration_nc($expression);
+
+  my ($val, $cacheable) = _parse_duration($expression);
+  return $val unless $cacheable;
+  return $cache{$expression} = $val;
 }
 
-sub parse_duration_nc {
+sub parse_duration_nc { return (_parse_duration(@_))[0] }
+
+sub _parse_duration {
   my ($expression) = @_;
   return unless defined $expression;
 
@@ -64,7 +69,7 @@ sub parse_duration_nc {
     }
   }
 
-  return sprintf('%.0f', $duration);
+  return (sprintf('%.0f', $duration), 1);
 }
 
 
