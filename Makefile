@@ -21,7 +21,7 @@
 #     NAME => q[Time::Duration::Parse::More]
 #     PREREQ_PM => { Test::More=>q[0.98], File::Temp=>q[0] }
 #     TEST_REQUIRES => {  }
-#     VERSION => q[0.003]
+#     VERSION => q[0.004]
 #     test => { TESTS=>q[t/*.t] }
 
 # --- MakeMaker post_initialize section:
@@ -61,11 +61,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Time::Duration::Parse::More
 NAME_SYM = Time_Duration_Parse_More
-VERSION = 0.003
+VERSION = 0.004
 VERSION_MACRO = VERSION
-VERSION_SYM = 0_003
+VERSION_SYM = 0_004
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 0.003
+XS_VERSION = 0.004
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -259,7 +259,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Time-Duration-Parse-More
-DISTVNAME = Time-Duration-Parse-More-0.003
+DISTVNAME = Time-Duration-Parse-More-0.004
 
 
 # --- MakeMaker macro section:
@@ -500,7 +500,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '    - t' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - inc' >> META_new.yml
 	$(NOECHO) $(ECHO) 'requires: {}' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: 0.003' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: 0.004' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
 	$(NOECHO) $(ECHO) '{' > META_new.json
@@ -541,7 +541,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : "0.003"' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : "0.004"' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
 

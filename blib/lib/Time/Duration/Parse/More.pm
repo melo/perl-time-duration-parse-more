@@ -1,7 +1,7 @@
 package Time::Duration::Parse::More;
 
 # ABSTRACT: parse natural language time duration expressions
-our $VERSION = '0.003'; # VERSION
+our $VERSION = '0.004'; # VERSION
 our $AUTHORITY = 'cpan:MELO'; # AUTHORITY
 
 use strict;
@@ -30,12 +30,23 @@ sub parse_duration {
   return unless defined $expression;
 
   return $cache{$expression} if exists $cache{$expression};
-  return $cache{$expression} = parse_duration_nc($expression);
+
+  my ($val, $cacheable) = _parse_duration($expression);
+  return $val unless $cacheable;
+  return $cache{$expression} = $val;
 }
 
-sub parse_duration_nc {
+sub parse_duration_nc { return (_parse_duration(@_))[0] }
+
+sub _parse_duration {
   my ($expression) = @_;
   return unless defined $expression;
+
+  ## 'midnight' is uncacheable
+  if ($expression eq 'midnight') {
+    my ($sec, $min, $hour) = (localtime())[0 .. 2];
+    return (60 - $sec + (60 - $min - 1) * 60 + (24 - $hour - 1) * 60 * 60, 0);
+  }
 
   my $e = $expression;
   $e =~ s/\band\b/ /gi;
@@ -64,7 +75,7 @@ sub parse_duration_nc {
     }
   }
 
-  return sprintf('%.0f', $duration);
+  return (sprintf('%.0f', $duration), 1);
 }
 
 
@@ -85,7 +96,7 @@ Time::Duration::Parse::More - parse natural language time duration expressions
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
@@ -97,6 +108,7 @@ version 0.003
     $seconds = parse_duration('1 minute minus 15 seconds'); ## 45
     $seconds = parse_duration('1 day minus 2.5 hours and 10 minutes plus 15 seconds'); ## 76815
     $seconds = parse_duration('minus 15 seconds'); ## -15
+    $seconds = parse_duration('midnight'); ## it depends :)
 
 =head1 DESCRIPTION
 
@@ -141,6 +153,9 @@ the final value is the sum of all the expressions
 taking in account the sign defined by the previous rule.
 
 =back
+
+The hard-coded 'midnight' expression is also understood and returns the
+number of seconds up to 00::00:00 of the next day.
 
 =head2 Factors
 
@@ -187,8 +202,9 @@ years (365 * days factor): y, year, and years;
     $seconds = parse_duration($expression);
 
 Given an C<$expression> in natural lanaguage returns the number of
-seconds it represents. This result is cached so future calls with the
-same expression will be faster.
+seconds it represents. This result, with the exception of the
+'midnight' expression, is cached so future calls with the same
+expression will be faster.
 
 If the expression cannot be parsed, C<parse_duration> will croak.
 
@@ -221,6 +237,14 @@ The following websites have more information about this module, and may be of he
 in addition to those websites please use your favorite search engine to discover more resources.
 
 =over 4
+
+=item *
+
+MetaCPAN
+
+A modern, open-source CPAN search engine, useful to view POD in HTML format.
+
+L<http://metacpan.org/release/Time-Duration-Parse-More>
 
 =item *
 
@@ -262,16 +286,17 @@ You can email the author of this module at C<MELO at cpan.org> asking for help w
 
 =head2 Bugs / Feature Requests
 
-Please report any bugs or feature requests by email to C<bug-time-duration-parse-more at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/Public/Dist/Display.html?Name=Time-Duration-Parse-More>. You will be automatically notified of any
-progress on the request by the system.
+Please report any bugs or feature requests through the web interface at L<https://github.com/melo/perl-time-duration-parse-more/issues>. You will be automatically notified of any progress on the request by the system.
 
 =head2 Source Code
 
+The code is open to the world, and available for you to hack on. Please feel free to browse it and play
+with it, or whatever. If you want to contribute patches, please send me a diff or prod me to pull
+from your repository :)
 
 L<https://github.com/melo/perl-time-duration-parse-more>
 
-  git clone https://github.com/melo/perl-time-duration-parse-more.git
+  git clone git://github.com/melo/perl-time-duration-parse-more.git
 
 =head1 ACKNOWLEDGEMENTS
 
