@@ -59,7 +59,7 @@
    "provides" : {
       "Time::Duration::Parse::More" : {
          "file" : "lib/Time/Duration/Parse/More.pm",
-         "version" : "0.004"
+         "version" : "0.005"
       }
    },
    "release_status" : "stable",
@@ -67,13 +67,14 @@
       "bugtracker" : {
          "web" : "https://github.com/melo/perl-time-duration-parse-more/issues"
       },
+      "homepage" : "http://metacpan.org/release/Time-Duration-Parse-More/",
       "repository" : {
          "type" : "git",
          "url" : "git://github.com/melo/perl-time-duration-parse-more.git",
          "web" : "https://github.com/melo/perl-time-duration-parse-more"
       }
    },
-   "version" : "0.004",
+   "version" : "0.005",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.014002"

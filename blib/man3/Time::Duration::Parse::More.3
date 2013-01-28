@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "Time::Duration::Parse::More 3"
-.TH Time::Duration::Parse::More 3 "2013-01-26" "perl v5.14.2" "User Contributed Perl Documentation"
+.TH Time::Duration::Parse::More 3 "2013-01-28" "perl v5.14.2" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -142,7 +142,7 @@
 Time::Duration::Parse::More \- parse natural language time duration expressions
 .SH "VERSION"
 .IX Header "VERSION"
-version 0.004
+version 0.005
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 .Vb 1
@@ -177,7 +177,8 @@ Negative and fractional values of \f(CW\*(C`N\*(C'\fR are suported. Singular, pl
 and single letter versions of \f(CW\*(C`factor\*(C'\fR are understood. All are
 case-insensitive \fBexcept\fR the single letter versions;
 .IP "\(bu" 4
-expressions in the form \f(CW\*(C`hh:mm:ss\*(C'\fR, \f(CW\*(C`hh:mm\*(C'\fR are also supported;
+expressions in the form \f(CW\*(C`hh:mm:ss\*(C'\fR, \f(CW\*(C`hh:mm\*(C'\fR, and \f(CW\*(C`XhYmZs\*(C'\fR (any order,
+all parts optional) are also supported;
 .IP "\(bu" 4
 the tokens \fIplus\fR or \fIminus\fR change the signal of the expressions that
 follow them;

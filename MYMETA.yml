@@ -30,12 +30,13 @@ no_index:
 provides:
   Time::Duration::Parse::More:
     file: lib/Time/Duration/Parse/More.pm
-    version: 0.004
+    version: 0.005
 requires: {}
 resources:
   bugtracker: https://github.com/melo/perl-time-duration-parse-more/issues
+  homepage: http://metacpan.org/release/Time-Duration-Parse-More/
   repository: git://github.com/melo/perl-time-duration-parse-more.git
-version: 0.004
+version: 0.005
 x_Dist_Zilla:
   perl:
     version: 5.014002

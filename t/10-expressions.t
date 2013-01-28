@@ -31,7 +31,13 @@ sub ok_duration {
 sub fail_duration {
   my $spec = shift;
   eval { parse_duration($spec) };
-  ok($@, $@);
+  if (my $e = $@) {
+    chomp($e);
+    pass($e);
+  }
+  else {
+    fail("Expression '$spec' was parsed without errors - not cool");
+  }
 }
 
 sub ok_midnight {
@@ -65,6 +71,15 @@ subtest 'extended expressions' => sub {
   ok_duration '1:1:1',          3661;
   ok_duration '100:200:300',    372300;
 
+  ok_duration '3h',                        3 * 3600;
+  ok_duration '2m',                        2 * 60;
+  ok_duration '1s',                        1;
+  ok_duration '21s3m',                     3 * 60 + 21;
+  ok_duration '3h2m1s',                    3 * 3600 + 2 * 60 + 1;
+  ok_duration '1s3m2h',                    2 * 3600 + 3 * 60 + 1;
+  ok_duration '1 hour 3h-2m1s 40 seconds', 4 * 3600 - 2 * 60 + 1 + 40;
+
+  fail_duration '1 hour1s3m2h';
   fail_duration 'mi nus';
   fail_duration 'minus 15 seconds plu s plus';
   fail_duration '1M aaand minus 15 secs';

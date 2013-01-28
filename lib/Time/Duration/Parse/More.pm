@@ -1,7 +1,7 @@
 package Time::Duration::Parse::More;
 
 # ABSTRACT: parse natural language time duration expressions
-our $VERSION = '0.004'; # VERSION
+our $VERSION = '0.005'; # VERSION
 our $AUTHORITY = 'cpan:MELO'; # AUTHORITY
 
 use strict;
@@ -49,6 +49,12 @@ sub _parse_duration {
   }
 
   my $e = $expression;
+
+  ### split up 1h2m3s...
+  my $n_re = qr{[-+]?\d+(?:[.,]\d+)?};
+  $e =~ s/ ($n_re) ([hsm]) (?= $n_re [hsm]) /$1 $2 /gxi;
+  $e =~ s/ ($n_re) ([hsm]) \b / $1 $2 /gxi;
+
   $e =~ s/\band\b/ /gi;
   $e =~ s/[\s\t]+/ /g;
   $e =~ s/^\s+|\s+$//g;
@@ -96,7 +102,7 @@ Time::Duration::Parse::More - parse natural language time duration expressions
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 SYNOPSIS
 
@@ -140,7 +146,8 @@ case-insensitive B<except> the single letter versions;
 
 =item *
 
-expressions in the form C<hh:mm:ss>, C<hh:mm> are also supported;
+expressions in the form C<hh:mm:ss>, C<hh:mm>, and C<XhYmZs> (any order,
+all parts optional) are also supported;
 
 =item *
 
