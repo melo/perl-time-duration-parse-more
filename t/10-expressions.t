@@ -31,7 +31,13 @@ sub ok_duration {
 sub fail_duration {
   my $spec = shift;
   eval { parse_duration($spec) };
-  ok($@, $@);
+  if (my $e = $@) {
+    chomp($e);
+    pass($e);
+  }
+  else {
+    fail("Expression '$spec' was parsed without errors - not cool");
+  }
 }
 
 sub ok_midnight {
