@@ -1,5 +1,9 @@
 Revision history for Time-Duration-Parse-More
  
+0.006     2013-02-01T12:18:13Z
+        * Tweak midnight tests to cope with strange clocks on some
+          cpantesters setups
+
 0.005     2013-01-28T17:02:17Z
         * Add support for XhYmZs expression types
 

@@ -1,7 +1,7 @@
 package Time::Duration::Parse::More;
 
 # ABSTRACT: parse natural language time duration expressions
-our $VERSION = '0.005'; # VERSION
+our $VERSION = '0.006'; # VERSION
 our $AUTHORITY = 'cpan:MELO'; # AUTHORITY
 
 use strict;
@@ -102,7 +102,7 @@ Time::Duration::Parse::More - parse natural language time duration expressions
 
 =head1 VERSION
 
-version 0.005
+version 0.006
 
 =head1 SYNOPSIS
 
@@ -118,11 +118,11 @@ version 0.005
 
 =head1 DESCRIPTION
 
-The module parses a limited set of natural language expressions and
-converts them into seconds.
+The module parses a limited set of natural language expressions and converts
+them into seconds.
 
-It is backwards compatible with L<Time::Duration::Parse> (passes the
-same test cases), but adds more expressions and memoization.
+It is backwards compatible with L<Time::Duration::Parse> (passes the same test
+cases), but adds more expressions and memoization.
 
 At the moment, the module is limited to english language expressions.
 
@@ -138,35 +138,36 @@ horizantal white-space, commas and the token I<and> are ignored;
 
 =item *
 
-an expresion in the form C<< N factor >> is translated to
-C<< N * factor_in_seconds >>. C<factor> is optional, defaults to I<seconds>.
-Negative and fractional values of C<N> are suported. Singular, plural
-and single letter versions of C<factor> are understood. All are
-case-insensitive B<except> the single letter versions;
+an expresion in the form C<< N factor >> is translated to C<< N *
+factor_in_seconds >>. C<factor> is optional, defaults to I<seconds>. Negative
+and fractional values of C<N> are suported. Singular, plural and single letter
+versions of C<factor> are also recognised. All are case-insensitive B<except>
+the single letter versions;
 
 =item *
 
-expressions in the form C<hh:mm:ss>, C<hh:mm>, and C<XhYmZs> (any order,
-all parts optional) are also supported;
+expressions in the form C<hh:mm:ss>, C<hh:mm>, and C<XhYmZs> (any order, all
+parts optional) are also supported;
 
 =item *
 
-the tokens I<plus> or I<minus> change the signal of the expressions that
-follow them;
+the tokens I<plus> or I<minus> change the signal of the expressions that follow
+them;
 
 =item *
 
-the final value is the sum of all the expressions
-taking in account the sign defined by the previous rule.
+the final value is the sum of all the expressions taking in account the sign
+defined by the previous rule.
 
 =back
 
-The hard-coded 'midnight' expression is also understood and returns the
-number of seconds up to 00::00:00 of the next day.
+The hard-coded 'midnight' expression is also understood and returns the number
+of seconds up to 00:00:00 of the next day.
 
 =head2 Factors
 
-The following factors are understood, with the corresponding value in seconds between parentesis:
+The following factors are understood, with the corresponding value in seconds
+between parentesis:
 
 =over 4
 
@@ -208,10 +209,9 @@ years (365 * days factor): y, year, and years;
 
     $seconds = parse_duration($expression);
 
-Given an C<$expression> in natural lanaguage returns the number of
-seconds it represents. This result, with the exception of the
-'midnight' expression, is cached so future calls with the same
-expression will be faster.
+Given an C<$expression> in natural lanaguage returns the number of seconds it
+represents. This result, with the exception of the 'midnight' expression, is
+cached so future calls with the same expression will be faster.
 
 If the expression cannot be parsed, C<parse_duration> will croak.
 
@@ -221,10 +221,9 @@ Same as L</parse_duration>, but the result will not be cached.
 
 =head1 HISTORY
 
-This module started as a private module for a closed-source project. I
-started to release it as C<Time::Delta> when I discovered
-L<Time::Duration::Parse>. I updated the API to match it, and added my
-own improvements. This is the result.
+This module started as a private module for a closed-source project. I started
+to release it as C<Time::Delta> when I discovered L<Time::Duration::Parse>. I
+updated the API to match it, and added my own improvements. This is the result.
 
 =head1 SEE ALSO
 
@@ -307,7 +306,8 @@ L<https://github.com/melo/perl-time-duration-parse-more>
 
 =head1 ACKNOWLEDGEMENTS
 
-Stole test cases and other small tidbits from Miyagawa's L<Time::Duration::Parse>.
+Stole test cases and other small tidbits from Miyagawa's
+L<Time::Duration::Parse>.
 
 =head1 AUTHOR
 

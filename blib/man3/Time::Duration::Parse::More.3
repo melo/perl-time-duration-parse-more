@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "Time::Duration::Parse::More 3"
-.TH Time::Duration::Parse::More 3 "2013-01-28" "perl v5.14.2" "User Contributed Perl Documentation"
+.TH Time::Duration::Parse::More 3 "2013-02-01" "perl v5.14.2" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -142,7 +142,7 @@
 Time::Duration::Parse::More \- parse natural language time duration expressions
 .SH "VERSION"
 .IX Header "VERSION"
-version 0.005
+version 0.006
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 .Vb 1
@@ -158,11 +158,11 @@ version 0.005
 .Ve
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
-The module parses a limited set of natural language expressions and
-converts them into seconds.
+The module parses a limited set of natural language expressions and converts
+them into seconds.
 .PP
-It is backwards compatible with Time::Duration::Parse (passes the
-same test cases), but adds more expressions and memoization.
+It is backwards compatible with Time::Duration::Parse (passes the same test
+cases), but adds more expressions and memoization.
 .PP
 At the moment, the module is limited to english language expressions.
 .SS "Rules"
@@ -171,26 +171,27 @@ The following rules are used to parse the expressions:
 .IP "\(bu" 4
 horizantal white-space, commas and the token \fIand\fR are ignored;
 .IP "\(bu" 4
-an expresion in the form \f(CW\*(C`N factor\*(C'\fR is translated to
-\&\f(CW\*(C`N * factor_in_seconds\*(C'\fR. \f(CW\*(C`factor\*(C'\fR is optional, defaults to \fIseconds\fR.
-Negative and fractional values of \f(CW\*(C`N\*(C'\fR are suported. Singular, plural
-and single letter versions of \f(CW\*(C`factor\*(C'\fR are understood. All are
-case-insensitive \fBexcept\fR the single letter versions;
+an expresion in the form \f(CW\*(C`N factor\*(C'\fR is translated to \f(CW\*(C`N *
+factor_in_seconds\*(C'\fR. \f(CW\*(C`factor\*(C'\fR is optional, defaults to \fIseconds\fR. Negative
+and fractional values of \f(CW\*(C`N\*(C'\fR are suported. Singular, plural and single letter
+versions of \f(CW\*(C`factor\*(C'\fR are also recognised. All are case-insensitive \fBexcept\fR
+the single letter versions;
 .IP "\(bu" 4
-expressions in the form \f(CW\*(C`hh:mm:ss\*(C'\fR, \f(CW\*(C`hh:mm\*(C'\fR, and \f(CW\*(C`XhYmZs\*(C'\fR (any order,
-all parts optional) are also supported;
+expressions in the form \f(CW\*(C`hh:mm:ss\*(C'\fR, \f(CW\*(C`hh:mm\*(C'\fR, and \f(CW\*(C`XhYmZs\*(C'\fR (any order, all
+parts optional) are also supported;
 .IP "\(bu" 4
-the tokens \fIplus\fR or \fIminus\fR change the signal of the expressions that
-follow them;
+the tokens \fIplus\fR or \fIminus\fR change the signal of the expressions that follow
+them;
 .IP "\(bu" 4
-the final value is the sum of all the expressions
-taking in account the sign defined by the previous rule.
+the final value is the sum of all the expressions taking in account the sign
+defined by the previous rule.
 .PP
-The hard-coded 'midnight' expression is also understood and returns the
-number of seconds up to 00::00:00 of the next day.
+The hard-coded 'midnight' expression is also understood and returns the number
+of seconds up to 00:00:00 of the next day.
 .SS "Factors"
 .IX Subsection "Factors"
-The following factors are understood, with the corresponding value in seconds between parentesis:
+The following factors are understood, with the corresponding value in seconds
+between parentesis:
 .IP "\(bu" 4
 seconds (1): s, second, seconds, sec, and secs;
 .IP "\(bu" 4
@@ -213,10 +214,9 @@ years (365 * days factor): y, year, and years;
 \&    $seconds = parse_duration($expression);
 .Ve
 .PP
-Given an \f(CW$expression\fR in natural lanaguage returns the number of
-seconds it represents. This result, with the exception of the
-\&'midnight' expression, is cached so future calls with the same
-expression will be faster.
+Given an \f(CW$expression\fR in natural lanaguage returns the number of seconds it
+represents. This result, with the exception of the 'midnight' expression, is
+cached so future calls with the same expression will be faster.
 .PP
 If the expression cannot be parsed, \f(CW\*(C`parse_duration\*(C'\fR will croak.
 .SS "parse_duration_nc"
@@ -224,10 +224,9 @@ If the expression cannot be parsed, \f(CW\*(C`parse_duration\*(C'\fR will croak.
 Same as \*(L"parse_duration\*(R", but the result will not be cached.
 .SH "HISTORY"
 .IX Header "HISTORY"
-This module started as a private module for a closed-source project. I
-started to release it as \f(CW\*(C`Time::Delta\*(C'\fR when I discovered
-Time::Duration::Parse. I updated the \s-1API\s0 to match it, and added my
-own improvements. This is the result.
+This module started as a private module for a closed-source project. I started
+to release it as \f(CW\*(C`Time::Delta\*(C'\fR when I discovered Time::Duration::Parse. I
+updated the \s-1API\s0 to match it, and added my own improvements. This is the result.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
 Time::Duration::Parse and Time::Duration.
@@ -293,7 +292,8 @@ from your repository :)
 .Ve
 .SH "ACKNOWLEDGEMENTS"
 .IX Header "ACKNOWLEDGEMENTS"
-Stole test cases and other small tidbits from Miyagawa's Time::Duration::Parse.
+Stole test cases and other small tidbits from Miyagawa's
+Time::Duration::Parse.
 .SH "AUTHOR"
 .IX Header "AUTHOR"
 Pedro Melo <melo@cpan.org>
