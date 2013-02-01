@@ -139,10 +139,11 @@ subtest 'midnight' => sub {
   ok_midnight('00:00:01', 24 * 60 * 60 - 1);
 
   set_localtime();
-  my $midnight_in = parse_duration('midnight');
-  sleep(1);
-  is(parse_duration('midnight'), $midnight_in - 1, "parse_duration('midnight') is not cached");
+  my $midnight_before = parse_duration('midnight');
+  sleep(2);
+  my $midnight_after = parse_duration('midnight');
+  ok((($midnight_before - $midnight_after) > 1),
+    "parse_duration('midnight') is not cached (before $midnight_before, after $midnight_after)");
 };
-
 
 done_testing();
