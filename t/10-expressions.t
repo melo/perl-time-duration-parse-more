@@ -142,7 +142,7 @@ subtest 'midnight' => sub {
   my $midnight_before = parse_duration('midnight');
   sleep(2);
   my $midnight_after = parse_duration('midnight');
-  ok((($midnight_before - $midnight_after) > 1),
+  ok((($midnight_before - $midnight_after) >= 1),
     "parse_duration('midnight') is not cached (before $midnight_before, after $midnight_after)");
 };
 

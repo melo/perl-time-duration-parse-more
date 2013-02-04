@@ -1,5 +1,8 @@
 Revision history for Time-Duration-Parse-More
  
+0.007     2013-02-04T01:40:17Z
+        * Deal with even more strange clocks found by cpantesters
+
 0.006     2013-02-01T12:18:13Z
         * Tweak midnight tests to cope with strange clocks on some
           cpantesters setups

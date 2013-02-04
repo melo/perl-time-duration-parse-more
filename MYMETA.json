@@ -63,7 +63,7 @@
    "provides" : {
       "Time::Duration::Parse::More" : {
          "file" : "lib/Time/Duration/Parse/More.pm",
-         "version" : "0.006"
+         "version" : "0.007"
       }
    },
    "release_status" : "stable",
@@ -78,7 +78,7 @@
          "web" : "https://github.com/melo/perl-time-duration-parse-more"
       }
    },
-   "version" : "0.006",
+   "version" : "0.007",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.014002"
