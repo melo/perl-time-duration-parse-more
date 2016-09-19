@@ -1,5 +1,8 @@
 Revision history for Time-Duration-Parse-More
  
+0.008     2016-09-19T13:58:45Z
+        * Allow the use of midnight on complex expressions
+
 0.007     2013-02-04T01:40:17Z
         * Deal with even more strange clocks found by cpantesters
 
