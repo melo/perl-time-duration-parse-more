@@ -144,6 +144,9 @@ subtest 'midnight' => sub {
   my $midnight_after = parse_duration('midnight');
   ok((($midnight_before - $midnight_after) >= 1),
     "parse_duration('midnight') is not cached (before $midnight_before, after $midnight_after)");
+
+  my $midnight_complex = parse_duration('midnight plus 6 hours');
+  ok(($midnight_complex - $midnight_after - 6 * 60 * 60) < 2, 'complex expressions with midnight ok');
 };
 
 done_testing();
