@@ -42,12 +42,6 @@ sub _parse_duration {
   my ($expression) = @_;
   return unless defined $expression;
 
-  ## 'midnight' is uncacheable
-  if ($expression eq 'midnight') {
-    my ($sec, $min, $hour) = (localtime())[0 .. 2];
-    return (60 - $sec + (60 - $min - 1) * 60 + (24 - $hour - 1) * 60 * 60, 0);
-  }
-
   my $e = $expression;
 
   ### split up 1h2m3s...
@@ -64,8 +58,9 @@ sub _parse_duration {
   $e =~ s/\b(\d+):(\d+):(\d+)\b/$1h $2m $3s/g;
   $e =~ s/\b(\d+):(\d+)\b/$1h $2m/g;
 
-  my $duration = 0;
-  my $signal   = 1;
+  my $duration  = 0;
+  my $cacheable = 1;
+  my $signal    = 1;
   while ($e) {
     if    ($e =~ s/^plus\b(\s*,?)*//)  { $signal = 1 }
     elsif ($e =~ s/^minus\b(\s*,?)*//) { $signal = -1 }
@@ -76,12 +71,19 @@ sub _parse_duration {
       croak "Unit '$u' not recognized in '$m'" unless exists $units{$u};
       $duration += $signal * $n * $units{$u};
     }
+    elsif ($e =~ s/^midnight\b(\s*,?)*//) {
+      my ($sec, $min, $hour) = (localtime())[0 .. 2];
+      $duration += $signal * (60 - $sec + (60 - $min - 1) * 60 + (24 - $hour - 1) * 60 * 60);
+
+      ## 'midnight' is uncacheable
+      $cacheable = 0;
+    }
     else {
       croak("Could not parse '$e'");
     }
   }
 
-  return (sprintf('%.0f', $duration), 1);
+  return (sprintf('%.0f', $duration), $cacheable);
 }
 
 
